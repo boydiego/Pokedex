@@ -79,22 +79,23 @@ body::before {
   -webkit-box-pack: center;
       -ms-flex-pack: center;
           justify-content: center;
+  -webkit-transition: margin 0.5s, -webkit-box-shadow 0.5s;
+  transition: margin 0.5s, -webkit-box-shadow 0.5s;
+  -o-transition: margin 0.5s, box-shadow 0.5s;
+  transition: margin 0.5s, box-shadow 0.5s;
+  transition: margin 0.5s, box-shadow 0.5s, -webkit-box-shadow 0.5s;
 }
 
 .pokemon-card:hover {
-  position: relative;
-  top: 10px;
-  left: 10px;
-  -webkit-box-shadow: 10px 10px 6px rgb(128 128 128 / 80%);
-          box-shadow: 10px 10px 6px rgb(128 128 128 / 80%);
+  margin: 20px 0 12px 20px;
+  -webkit-box-shadow: 10px 15px 6px rgb(128 128 128 / 80%);
+          box-shadow: 10px 15px 6px rgb(128 128 128 / 80%);
 }
 
 .pokemon-card:active {
-  position: relative;
-  top: 10px;
-  left: 10px;
-  -webkit-box-shadow: 10px 10px 6px rgb(128 128 128 / 80%);
-          box-shadow: 10px 10px 6px rgb(128 128 128 / 80%);
+  margin: 20px 0 12px 20px;
+  -webkit-box-shadow: 10px 15px 6px rgb(128 128 128 / 80%);
+          box-shadow: 10px 15px 6px rgb(128 128 128 / 80%);
 }
 
 @media all and (max-width: 500px) {

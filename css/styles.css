@@ -69,15 +69,13 @@ body::before {
   background-color: var(--card-color);
   display: flex;
   justify-content: center;
-  transition: position 5s;
+  transition: margin 0.5s, box-shadow 0.5s;
 }
 
 .pokemon-card:hover,
 .pokemon-card:active {
-  position: relative;
-  top: 10px;
-  left: 10px;
-  box-shadow: 10px 10px 6px var(--shadow-color-dark);
+  margin: 20px 0 12px 20px;
+  box-shadow: 10px 15px 6px var(--shadow-color-dark);
 }
 
 @media all and (max-width: 500px) {
