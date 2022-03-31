@@ -27,7 +27,11 @@ let pokemonRepository = (function () {
   }
 
   function add(pokemon) {
-    pokemonList.push(pokemon);
+    if ((typeof pokemon === object) && (Object.keys(pokemon) === ['name', 'height', 'types'])) {
+      pokemonList.push(pokemon)
+    } else {
+      alert('Entry not valid!');
+    }
   }
   
   return {
@@ -48,3 +52,12 @@ function myLoopFunction(pokemon) {
 }
 
 pokemonRepository.getAll().forEach(myLoopFunction);
+
+// this function allows the user to search for a specific pokemon in the pokemonRepository
+function searchPokemon(userInput) {
+  let resultArray = pokemonRepository.getAll().filter(pokemon => pokemon.name === userInput);
+  let pokemonName = resultArray[0].name;
+  return `<p class="search-result">${pokemonName}</p>`
+}
+
+console.log(searchPokemon('Charmander'));
