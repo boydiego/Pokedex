@@ -21,12 +21,14 @@ let pokemonList = [
   }
 ];
 
-// the for loop iterates through the pokemonList array displaying each objects name and height in a HTML paragraph element with the class "pokemon-card".
+// we iterate through the pokemonList array displaying each objects name and height in a HTML paragraph element with the class "pokemon-card".
 // if a pokemons height is larger than 1, the string "- Wow, that's big!" will be added at the end
-for (let i=0; i < pokemonList.length; i++) {
-  if (pokemonList[i].height > 1) {
-    document.write(`<p class="pokemon-card">${pokemonList[i].name} (height: ${pokemonList[i].height}) - Wow, that's big!</p>`);
+function myLoopFunction(pokemon) {
+  if (pokemon.height > 1) {
+    document.write(`<p class="pokemon-card">${pokemon.name} (height: ${pokemon.height}) - Wow, that's big!</p>`);
   } else {
-    document.write(`<p class="pokemon-card">${pokemonList[i].name} (height: ${pokemonList[i].height})</p>`);
+    document.write(`<p class="pokemon-card">${pokemon.name} (height: ${pokemon.height})</p>`);
   }
 }
+
+pokemonList.forEach(myLoopFunction);
