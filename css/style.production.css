@@ -66,12 +66,29 @@ body::before {
   font-size: 50px;
 }
 
-.pokemon-card {
+.pokemon-list {
+  list-style: none;
+  padding: 0;
+  width: 450px;
+}
+
+.pokemon-list__item {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+.pkm-btn {
+  margin: 1rem;
   padding: 20px;
   border-radius: 5px;
+  border: none;
   -webkit-box-shadow: 20px 20px 10px rgb(128 128 128 / 50%);
           box-shadow: 20px 20px 10px rgb(128 128 128 / 50%);
-  width: 450px;
+  width: 80%;
   background-color: aliceblue;
   display: -webkit-box;
   display: -ms-flexbox;
@@ -86,16 +103,16 @@ body::before {
   transition: margin 0.5s, box-shadow 0.5s, -webkit-box-shadow 0.5s;
 }
 
-.pokemon-card:hover {
-  margin: 20px 0 12px 20px;
-  -webkit-box-shadow: 10px 15px 6px rgb(128 128 128 / 80%);
-          box-shadow: 10px 15px 6px rgb(128 128 128 / 80%);
+.pkm-btn:hover {
+  margin: 1.5rem 0.5rem 0.5rem 1.5rem;
+  -webkit-box-shadow: 10px 10px 5px rgb(128 128 128 / 80%);
+          box-shadow: 10px 10px 5px rgb(128 128 128 / 80%);
 }
 
-.pokemon-card:active {
-  margin: 20px 0 12px 20px;
-  -webkit-box-shadow: 10px 15px 6px rgb(128 128 128 / 80%);
-          box-shadow: 10px 15px 6px rgb(128 128 128 / 80%);
+.pkm-btn:active {
+  margin: 1.5rem 0.5rem 0.5rem 1.5rem;
+  -webkit-box-shadow: 10px 10px 5px rgb(128 128 128 / 80%);
+          box-shadow: 10px 10px 5px rgb(128 128 128 / 80%);
 }
 
 @media all and (max-width: 500px) {
@@ -107,9 +124,25 @@ body::before {
     font-size: 30px;
   }
 
-  .pokemon-card {
+  .pokemon-list {
     width: 100%;
-    -webkit-box-shadow: 10px 10px 6px rgb(128 128 128 / 50%);
-            box-shadow: 10px 10px 6px rgb(128 128 128 / 50%);
+  }
+
+  .pkm-btn {
+    -webkit-box-shadow: 10px 10px 5px rgb(128 128 128 / 50%);
+            box-shadow: 10px 10px 5px rgb(128 128 128 / 50%);
+    margin: 0.5rem;
+  }
+
+  .pkm-btn:hover {
+    margin: 0.75rem 0.25rem 0.25rem 0.75rem;
+    -webkit-box-shadow: 5px 5px 2.5px rgb(128 128 128 / 80%);
+            box-shadow: 5px 5px 2.5px rgb(128 128 128 / 80%);
+  }
+
+  .pkm-btn:active {
+    margin: 0.75rem 0.25rem 0.25rem 0.75rem;
+    -webkit-box-shadow: 5px 5px 2.5px rgb(128 128 128 / 80%);
+            box-shadow: 5px 5px 2.5px rgb(128 128 128 / 80%);
   }
 }

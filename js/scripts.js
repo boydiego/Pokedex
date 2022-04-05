@@ -33,22 +33,34 @@ let pokemonRepository = (function () {
       alert('Entry not valid!');
     }
   }
+
+  function addListItem(pokemon) {
+    // grabbing elements
+    let ul = document.querySelector('.pokemon-list');
+
+    // creating elements
+    let li = document.createElement('li');
+    let button = document.createElement('button');
+
+    // customizing elements
+    button.innerText = pokemon.name;
+    button.classList.add('pkm-btn');
+    li.classList.add('pokemon-list__item');
+
+    // appending elements
+    li.appendChild(button);
+    ul.appendChild(li);
+  }
   
   return {
     getAll,
-    add
+    add,
+    addListItem
   }
 })();
 
-
-// we iterate through the pokemonList array displaying each objects name and height in a HTML paragraph element with the class "pokemon-card".
-// if a pokemons height is larger than 1, the string "- Wow, that's big!" will be added at the end
 function myLoopFunction(pokemon) {
-  if (pokemon.height > 1) {
-    document.write(`<p class="pokemon-card">${pokemon.name} (height: ${pokemon.height}) - Wow, that's big!</p>`);
-  } else {
-    document.write(`<p class="pokemon-card">${pokemon.name} (height: ${pokemon.height})</p>`);
-  }
+  pokemonRepository.addListItem(pokemon);
 }
 
 pokemonRepository.getAll().forEach(myLoopFunction);
