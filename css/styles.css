@@ -83,6 +83,7 @@ body::before {
   display: flex;
   justify-content: center;
   transition: margin 0.5s, box-shadow 0.5s;
+  cursor: pointer;
 }
 
 .pkm-btn:hover,

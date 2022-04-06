@@ -101,6 +101,7 @@ body::before {
   -o-transition: margin 0.5s, box-shadow 0.5s;
   transition: margin 0.5s, box-shadow 0.5s;
   transition: margin 0.5s, box-shadow 0.5s, -webkit-box-shadow 0.5s;
+  cursor: pointer;
 }
 
 .pkm-btn:hover {

@@ -34,6 +34,17 @@ let pokemonRepository = (function () {
     }
   }
 
+  function showDetails(pokemon) {
+    console.log(pokemon);
+  }
+
+  // event listeners for addListItem()
+  function buttonListener(button, pokemon) {
+    button.addEventListener('click', function () {
+      showDetails(pokemon);
+    });
+  }
+
   function addListItem(pokemon) {
     // grabbing elements
     let ul = document.querySelector('.pokemon-list');
@@ -50,6 +61,9 @@ let pokemonRepository = (function () {
     // appending elements
     li.appendChild(button);
     ul.appendChild(li);
+
+    // calling event listeners
+    buttonListener(button, pokemon);
   }
   
   return {
