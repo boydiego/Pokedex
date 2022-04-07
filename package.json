@@ -2,5 +2,9 @@
   "devDependencies": {
     "stylelint": "^14.6.1",
     "stylelint-config-standard": "^25.0.0"
+  },
+  "dependencies": {
+    "promise-polyfill": "8.2.3",
+    "whatwg-fetch": "^3.6.2"
   }
 }
