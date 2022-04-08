@@ -49,9 +49,11 @@ let pokemonRepository = (function () {
   }
 
   function loadList() {
+    showLoadingMessage();
     return fetch(apiUrl).then(function (response) {
       return response.json();
     }).then(function (json) {
+      hideLoadingMessage();
       json.results.forEach(function (item) {
         let pokemon = {
           name: item.name,
@@ -60,21 +62,35 @@ let pokemonRepository = (function () {
         add(pokemon);
       });
     }).catch(function (e) {
+      hideLoadingMessage();
       console.error(e);
     })
   }
 
   function loadDetails(item) {
+    showLoadingMessage();
     let url = item.detailsUrl;
     return fetch(url).then(function (response) {
       return response.json();
     }).then(function (details) {
+      hideLoadingMessage();
       item.imageUrl = details.sprites.front_default;
       item.height = details.height;
       item.types = details.types;
     }).catch(function (e) {
+      hideLoadingMessage();
       console.error(e);
     })
+  }
+
+  function showLoadingMessage() {
+    let loadingElement = document.querySelector('.loading-page');
+    loadingElement.classList.remove('hidden');
+  }
+
+  function hideLoadingMessage() {
+    let loadingElement = document.querySelector('.loading-page');
+    loadingElement.classList.add('hidden');
   }
   
   return {

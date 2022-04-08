@@ -22,16 +22,70 @@ body {
   width: 100%;
   background-image: url("../img/bahnijit-barman-1fZC2rYbpsU-unsplash.jpg");
   background-size: cover;
+  background-attachment: fixed;
 }
 
 body::before {
   content: "";
-  position: absolute;
+  position: fixed;
   top: 0;
   right: 0;
   bottom: 0;
   left: 0;
   background-color: rgb(0 0 0 / 70%);
+}
+
+.loading-page.hidden {
+  display: none;
+}
+
+.loading-circle {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  box-shadow: 0 0 40px var(--card-color);
+  animation: loading-animation 6s infinite;
+  color: var(--title-color);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+@keyframes loading-animation {
+  0% {
+    background-color: #c19ab7;
+    border-radius: 50%;
+    width: 80px;
+    height: 80px;
+  }
+
+  25% {
+    background-color: #9c95dc;
+    border-radius: 30%;
+    width: 100px;
+    height: 100px;
+  }
+
+  50% {
+    background-color: #170a1c;
+    border-radius: 50%;
+    width: 80px;
+    height: 80px;
+  }
+
+  75% {
+    background-color: #0b7189;
+    border-radius: 30%;
+    width: 100px;
+    height: 100px;
+  }
+
+  100% {
+    background-color: #228cdb;
+    border-radius: 50%;
+    width: 80px;
+    height: 80px;
+  }
 }
 
 .attribution {
@@ -63,13 +117,17 @@ body::before {
 
 .pokemon-list {
   list-style: none;
-  padding: 0;
-  width: 450px;
+  padding: 0 0 50px;
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
 }
 
 .pokemon-list__item {
   display: flex;
   justify-content: center;
+  width: 450px;
 }
 
 .pkm-btn {
