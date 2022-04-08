@@ -1,41 +1,23 @@
 let pokemonRepository = (function () {
-  let pokemonList = [
-    {
-      name: 'Bulbasaur',
-      height: 0.7,
-      types: ['grass', 'poison']
-    },
-    {
-      name: 'Charmander',
-      height: 0.6,
-      types: ['fire']
-    },
-    {
-      name: 'Squirtle',
-      height: 0.5,
-      types: ['water']
-    },
-    {
-      name: 'Ekans',
-      height: 2,
-      types:['poison']
-    }
-  ];
-
-  function getAll() {
-    return pokemonList;
-  }
+  let pokemonList = [];
+  let apiUrl = 'https://pokeapi.co/api/v2/pokemon/?limit=150';
 
   function add(pokemon) {
-    if ((typeof pokemon === object) && (Object.keys(pokemon) === ['name', 'height', 'types'])) {
+    if ((typeof pokemon === 'object') && ('name', 'detailsUrl' in pokemon)) {
       pokemonList.push(pokemon)
     } else {
       alert('Entry not valid!');
     }
   }
 
+  function getAll() {
+    return pokemonList;
+  }
+
   function showDetails(pokemon) {
-    console.log(pokemon.name);
+    loadDetails(pokemon).then(function () {
+      console.log(pokemon);
+    });
   }
 
   // event listeners for addListItem()
@@ -65,11 +47,42 @@ let pokemonRepository = (function () {
     // calling event listeners
     buttonListener(button, pokemon);
   }
+
+  function loadList() {
+    return fetch(apiUrl).then(function (response) {
+      return response.json();
+    }).then(function (json) {
+      json.results.forEach(function (item) {
+        let pokemon = {
+          name: item.name,
+          detailsUrl: item.url
+        };
+        add(pokemon);
+      });
+    }).catch(function (e) {
+      console.error(e);
+    })
+  }
+
+  function loadDetails(item) {
+    let url = item.detailsUrl;
+    return fetch(url).then(function (response) {
+      return response.json();
+    }).then(function (details) {
+      item.imageUrl = details.sprites.front_default;
+      item.height = details.height;
+      item.types = details.types;
+    }).catch(function (e) {
+      console.error(e);
+    })
+  }
   
   return {
-    getAll,
     add,
-    addListItem
+    getAll,
+    addListItem,
+    loadList,
+    loadDetails
   }
 })();
 
@@ -77,7 +90,9 @@ function myLoopFunction(pokemon) {
   pokemonRepository.addListItem(pokemon);
 }
 
-pokemonRepository.getAll().forEach(myLoopFunction);
+pokemonRepository.loadList().then(function () {
+  pokemonRepository.getAll().forEach(myLoopFunction);
+})
 
 // this function allows the user to search for a specific pokemon in the pokemonRepository
 function searchPokemon(userInput) {
