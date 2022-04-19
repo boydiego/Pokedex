@@ -21,26 +21,40 @@
   <div class="container-fluid page-container">
     <!-- title -->
     <div class="row">
-      <h1 class="container__title text-center col">Pokédex</h1>
+      <h1 class="page-container__title text-center col">Pokédex</h1>
     </div>
+
     <!-- loading animation -->
     <div class="row">
       <div class="loading-page text-center col hidden">
         <div class="loading-circle text-center">Loading</div>
       </div>
     </div>
+
     <!-- modal -->
     <div class="row">
-      <div id="modal-container"></div>
+      <div class="modal fade" id="pokemonModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+          <div class="modal-content">
+            <div class="modal-header"></div>
+            <div class="modal-body">
+              <h5 class="modal-title"></h5>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
+
     <!-- pokemon list -->
     <ul class="list-group row"></ul>
+
     <!-- attribution -->
     <div class="row">
       <p class="attribution col">
         Background by <a href="https://unsplash.com/@bahnijitb?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Bahnijit Barman</a> on <a href="https://unsplash.com/s/photos/pokemon?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Unsplash</a>
       </p>
     </div>
+    
   </div>
 
   <!-- jQuery first, then Popper.js, then Bootstrap JS -->

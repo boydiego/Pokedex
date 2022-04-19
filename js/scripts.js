@@ -46,6 +46,8 @@ let pokemonRepository = (function () {
     button.classList.add();
     $(button).addClass('pkm-btn btn');
     $(button).attr('type', 'button');
+    $(button).attr('data-toggle', 'modal');
+    $(button).attr('data-target', '#pokemonModal');
     
     $(li).addClass('list-group-item col-xl-3 col-lg-4 col-sm-6');
 
@@ -57,80 +59,50 @@ let pokemonRepository = (function () {
     buttonListener(button, pokemon);
   }
 
-    // modal start
-    let modalContainer = document.querySelector('#modal-container');
-
+    // MODAL START
     function showModal(name, height, types, imageUrl) {
+      let modalBody = $('.modal-body');
+      let modalTitle = $('.modal-title');
+      let modalHeader = $('.modal-header');
+
+      modalTitle.empty();
+      modalBody.empty();
+      modalHeader.empty();
+
       function capitalizeFirstLetter(name) {
         return name.charAt(0).toUpperCase() + name.slice(1);
       }
   
       let heightInMeters = height / 10;
       let pokemonName = capitalizeFirstLetter(name);
-  
-      modalContainer.innerHTML = '';
-  
-      let modal = document.createElement('div');
-      modal.classList.add('modal');
-  
-      let closeButtonElement = document.createElement('button');
-      closeButtonElement.classList.add('modal-close');
-      closeButtonElement.innerText = 'Close';
-      closeButtonElement.addEventListener('click', hideModal);
-  
-      let imageElement = document.createElement('img');
-      imageElement.src = imageUrl;
-  
-      let nameElement = document.createElement('h1');
-      nameElement.innerText = pokemonName;
-  
-      let heightElement = document.createElement('p');
-      heightElement.innerText = `${heightInMeters} m`;
-      
-      let typesBox = document.createElement('div');
-      typesBox.classList.add('pokemon-types');
-  
-      modal.appendChild(closeButtonElement);
+
+      let closeModeBtn = $(`<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>`);
+      let typesBox = $(`<div class="pokemon-types"></div>`);
+
+      let imageElement = $(`<img class="modal-image">`);
+      imageElement.attr('src', imageUrl);
+      let nameElement = $(`<h1>${pokemonName}</h1>`);
+      let heightElement = $(`<p>${heightInMeters} m</p>`);
+
       types.forEach((type, index) => {
         if (index === types.length -1) {
-          let typesFirstElement = document.createElement('span');
-          typesFirstElement.classList.add('first-type');
-          typesFirstElement.innerText = type.type.name.toUpperCase();
-          typesBox.appendChild(typesFirstElement);
-          modal.appendChild(typesBox);
+          let typesFirstElement = $(`<span class="first-type">${type.type.name.toUpperCase()}</span>`);
+          typesBox.append(typesFirstElement);
+          modalHeader.append(typesBox);
         } else {
-          let typesSecondElement = document.createElement('span');
-          typesSecondElement.classList.add('second-type');
-          typesSecondElement.innerText = type.type.name.toUpperCase();
-          typesBox.appendChild(typesSecondElement);
-          modal.appendChild(typesBox);
+          let typesSecondElement = $(`<span class="second-type">${type.type.name.toUpperCase()}</span>`);
+          typesBox.append(typesSecondElement);
+          modalHeader.append(typesBox);
         }
       });
-      modal.appendChild(imageElement);
-      modal.appendChild(nameElement);
-      modal.appendChild(heightElement);
-      modalContainer.appendChild(modal);
-  
-      modalContainer.classList.add('is-visible');
+      modalHeader.append(closeModeBtn);
+      
+      modalTitle.append(nameElement);
+      modalBody.append(modalTitle);
+      modalBody.append(imageElement);
+      modalBody.append(heightElement);
     }
-  
-    function hideModal() {
-      modalContainer.classList.remove('is-visible');
-    }
-  
-    window.addEventListener('keydown', (event) => {
-      if (event.key === 'Escape' && modalContainer.classList.contains('is-visible')) {
-        hideModal();
-      }
-    });
-  
-    modalContainer.addEventListener('click', (event) => {
-      let target = event.target;
-      if (target === modalContainer) {
-        hideModal();
-      }
-    });
-    // modal end
+    // MODAL END
 
   function loadList() {
     showLoadingMessage();
