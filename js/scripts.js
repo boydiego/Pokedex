@@ -162,7 +162,11 @@ let pokemonRepository = (function () {
 
       console.log(capitalizedUserInput);
 
-      let resultArray = pokemonList.filter(pokemon => capitalizeFirstLetter(pokemon.name).charAt() === capitalizedUserInput || capitalizeFirstLetter(pokemon.name) === capitalizedUserInput);
+      let resultArray = pokemonList.filter(pokemon => capitalizeFirstLetter(pokemon.name).charAt(0) === capitalizedUserInput ||
+      capitalizeFirstLetter(pokemon.name).charAt(0) + capitalizeFirstLetter(pokemon.name).charAt(1) === capitalizedUserInput ||
+      capitalizeFirstLetter(pokemon.name).charAt(0) + capitalizeFirstLetter(pokemon.name).charAt(1) + capitalizeFirstLetter(pokemon.name).charAt(2) === capitalizedUserInput ||
+      capitalizeFirstLetter(pokemon.name).charAt(0) + capitalizeFirstLetter(pokemon.name).charAt(1) + capitalizeFirstLetter(pokemon.name).charAt(2) + capitalizeFirstLetter(pokemon.name).charAt(3) === capitalizedUserInput ||
+      capitalizeFirstLetter(pokemon.name) === capitalizedUserInput);
       console.log(resultArray);
       resultArray.forEach(result => addListItem(result));
     }
@@ -185,5 +189,3 @@ function myLoopFunction(pokemon) {
 pokemonRepository.loadList().then(function () {
   pokemonRepository.getAll().forEach(myLoopFunction);
 })
-
-// this function allows the user to search for a specific pokemon in the pokemonRepository
