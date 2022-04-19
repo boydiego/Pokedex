@@ -43,10 +43,10 @@ let pokemonRepository = (function () {
     let pokemonName = capitalizeFirstLetter(pokemon.name);
 
     button.innerText = pokemonName;
-    button.classList.add('btn btn-outline-dark pkm-btn');
+    button.classList.add('pkm-btn', 'btn');
     $(button).attr('type', 'button');
     
-    li.classList.add('list-group-item col-lg-3 col-md-4 col-sm-6');
+    li.classList.add('list-group-item', 'col-lg-3', 'col-md-4', 'col-sm-6', 'col');
 
     // appending elements
     li.appendChild(button);
@@ -194,10 +194,10 @@ pokemonRepository.loadList().then(function () {
 })
 
 // this function allows the user to search for a specific pokemon in the pokemonRepository
-function searchPokemon(userInput) {
+/* function searchPokemon(userInput) {
   let resultArray = pokemonRepository.getAll().filter(pokemon => pokemon.name === userInput);
   let pokemonName = resultArray[0].name;
   return `<p class="search-result">${pokemonName}</p>`
 }
 
-console.log(searchPokemon('Charmander'));
+console.log(searchPokemon('Charmander')); */
