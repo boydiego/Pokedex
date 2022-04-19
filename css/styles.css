@@ -175,6 +175,7 @@ body::before {
 
 .page-container {
   position: relative;
+  margin-top: 60px;
 }
 
 .container__title {
