@@ -198,13 +198,22 @@ body::before {
   width: 450px;
 } */
 
+.list-group {
+  flex-direction: row;
+}
+
+.list-group-item {
+  background: transparent;
+  border: none;
+}
+
 .pkm-btn {
   margin: 1rem;
   padding: 20px;
   border-radius: 5px;
   border: none;
   box-shadow: 20px 20px 10px var(--shadow-color-light);
-  width: 80%;
+  width: 90%;
   background-color: var(--card-color);
   display: flex;
   justify-content: center;
@@ -219,26 +228,43 @@ body::before {
 }
 
 @media all and (max-width: 500px) {
-  .container {
-    width: 90%;
+  .page-container {
+    margin-top: 180px;
   }
 
   .container__title {
-    font-size: 30px;
-  }
-
-  .pokemon-list {
-    width: 100%;
+    display: none;
   }
 
   .pkm-btn {
-    box-shadow: 10px 10px 5px var(--shadow-color-light);
+    box-shadow: none;
     margin: 0.5rem;
+    width: 95%;
   }
 
   .pkm-btn:hover,
   .pkm-btn:active {
-    margin: 0.75rem 0.25rem 0.25rem 0.75rem;
-    box-shadow: 5px 5px 2.5px var(--shadow-color-dark);
+    margin: 0.5rem;
+    box-shadow: none;
+  }
+}
+
+@media all and (max-width: 507px) and (min-width: 501px) {
+  .page-container {
+    margin-top: 150px;
+  }
+}
+
+@media all and (max-width: 575px) {
+  .navbar {
+    flex-direction: column;
+  }
+
+  .page-container {
+    margin-top: 180px;
+  }
+
+  .container__title {
+    display: none;
   }
 }

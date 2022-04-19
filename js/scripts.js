@@ -43,10 +43,11 @@ let pokemonRepository = (function () {
     let pokemonName = capitalizeFirstLetter(pokemon.name);
 
     button.innerText = pokemonName;
-    button.classList.add('pkm-btn', 'btn');
+    button.classList.add();
+    $(button).addClass('pkm-btn btn');
     $(button).attr('type', 'button');
     
-    li.classList.add('list-group-item', 'col-lg-3', 'col-md-4', 'col-sm-6', 'col');
+    $(li).addClass('list-group-item col-xl-3 col-lg-4 col-sm-6');
 
     // appending elements
     li.appendChild(button);
