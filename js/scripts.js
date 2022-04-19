@@ -156,16 +156,13 @@ let pokemonRepository = (function () {
       return userInput.charAt(0).toUpperCase() + userInput.slice(1);
     }
 
-    
     if (userInput.length >= 1) {
-      console.log('works');
-
       userInput.toLowerCase();
       let capitalizedUserInput = capitalizeFirstLetter(userInput);
 
       console.log(capitalizedUserInput);
 
-      let resultArray = pokemonList.filter(pokemon => capitalizeFirstLetter(pokemon.name).charAt() === capitalizedUserInput);
+      let resultArray = pokemonList.filter(pokemon => capitalizeFirstLetter(pokemon.name).charAt() === capitalizedUserInput || capitalizeFirstLetter(pokemon.name) === capitalizedUserInput);
       console.log(resultArray);
       resultArray.forEach(result => addListItem(result));
     }
