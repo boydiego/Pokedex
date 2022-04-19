@@ -152,9 +152,9 @@ body::before {
 /* end modal styling */
 
 .attribution {
-  position: absolute;
+  /* position: absolute;
   bottom: 0;
-  left: 5px;
+  left: 5px; */
   color: var(--attribution-primary);
   font-size: 14px;
 }
@@ -164,13 +164,17 @@ body::before {
   font-size: 14px;
 }
 
-.container {
+/* .container {
   position: relative;
   width: 80%;
   margin: 0 auto;
   display: flex;
   flex-direction: column;
   align-items: center;
+} */
+
+.page-container {
+  position: relative;
 }
 
 .container__title {
@@ -178,20 +182,20 @@ body::before {
   font-size: 50px;
 }
 
-.pokemon-list {
+/* .pokemon-list {
   list-style: none;
   padding: 0 0 50px;
   width: 100%;
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-}
+} */
 
-.pokemon-list__item {
+/* .pokemon-list__item {
   display: flex;
   justify-content: center;
   width: 450px;
-}
+} */
 
 .pkm-btn {
   margin: 1rem;
