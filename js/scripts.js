@@ -148,13 +148,36 @@ let pokemonRepository = (function () {
     let loadingElement = document.querySelector('.loading-page');
     loadingElement.classList.add('hidden');
   }
+
+  function searchPokemon(userInput) {
+    $('.list-group').empty();
+
+    function capitalizeFirstLetter(userInput) {
+      return userInput.charAt(0).toUpperCase() + userInput.slice(1);
+    }
+
+    
+    if (userInput.length >= 1) {
+      console.log('works');
+
+      userInput.toLowerCase();
+      let capitalizedUserInput = capitalizeFirstLetter(userInput);
+
+      console.log(capitalizedUserInput);
+
+      let resultArray = pokemonList.filter(pokemon => capitalizeFirstLetter(pokemon.name).charAt() === capitalizedUserInput);
+      console.log(resultArray);
+      resultArray.forEach(result => addListItem(result));
+    }
+  }
   
   return {
     add,
     getAll,
     addListItem,
     loadList,
-    loadDetails
+    loadDetails,
+    searchPokemon
   }
 })();
 
@@ -167,10 +190,3 @@ pokemonRepository.loadList().then(function () {
 })
 
 // this function allows the user to search for a specific pokemon in the pokemonRepository
-/* function searchPokemon(userInput) {
-  let resultArray = pokemonRepository.getAll().filter(pokemon => pokemon.name === userInput);
-  let pokemonName = resultArray[0].name;
-  return `<p class="search-result">${pokemonName}</p>`
-}
-
-console.log(searchPokemon('Charmander')); */
