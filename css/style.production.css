@@ -140,6 +140,11 @@ body::before {
   }
 }
 
+/* NAVBAR */
+.navbar-brand {
+  cursor: pointer;
+}
+
 /* MODAL STYLING */
 .modal-header .close {
   position: absolute;
