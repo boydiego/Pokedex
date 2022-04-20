@@ -43,7 +43,6 @@ let pokemonRepository = (function () {
     let pokemonName = capitalizeFirstLetter(pokemon.name);
 
     button.innerText = pokemonName;
-    button.classList.add();
     $(button).addClass('pkm-btn btn');
     $(button).attr('type', 'button');
     $(button).attr('data-toggle', 'modal');
