@@ -10,14 +10,16 @@
   <link rel="stylesheet" type="text/css" href="css/styles.css">
 </head>
 <body>
-  <nav class="navbar navbar-light bg-light justify-content-between fixed-top">
-    <a href="/index.html" class="navbar-brand"><img src="./img/pokeball_logo.svg" alt="Logo image of a pokeball"> Pokédex</a>
-    <form class="form-inline">
-      <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" onkeyup="pokemonRepository.searchPokemon(value)">
-    </form>
-  </nav>
+  <header>
+    <nav class="navbar navbar-light bg-light justify-content-between fixed-top">
+      <a href="/index.html" class="navbar-brand"><img src="./img/pokeball_logo.svg" alt="Logo image of a pokeball"> Pokédex</a>
+      <form class="form-inline">
+        <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" onkeyup="pokemonRepository.searchPokemon(value)">
+      </form>
+    </nav>
+  </header>
   
-  <div class="container-fluid page-container">
+  <main class="container-fluid page-container">
     <!-- title -->
     <div class="row">
       <h1 class="page-container__title text-center col">Pokédex</h1>
@@ -25,14 +27,14 @@
 
     <!-- loading animation -->
     <div class="row">
-      <div class="loading-page text-center col hidden">
-        <div class="loading-circle text-center">Loading</div>
+      <div class="loading-page col hidden">
+        <div class="loading-circle">Loading</div>
       </div>
     </div>
 
     <!-- modal -->
     <div class="row">
-      <div class="modal fade" id="pokemonModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+      <div class="modal fade" id="pokemonModal" tabindex="-1" role="dialog" aria-labelledby="Pokemon-modal" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered" role="document">
           <div class="modal-content">
             <div class="modal-header"></div>
@@ -47,14 +49,16 @@
     <!-- pokemon list -->
     <ul class="list-group row"></ul>
 
+    
+  </main>
+  <footer class="container-fluid">
     <!-- attribution -->
     <div class="row">
       <p class="attribution col">
         Background by <a href="https://unsplash.com/@bahnijitb?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Bahnijit Barman</a> on <a href="https://unsplash.com/s/photos/pokemon?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Unsplash</a>
       </p>
     </div>
-    
-  </div>
+  </footer>
 
   <!-- jQuery first, then Popper.js, then Bootstrap JS -->
   <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>

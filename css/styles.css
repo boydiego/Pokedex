@@ -35,6 +35,11 @@ body::before {
   background-color: rgb(0 0 0 / 70%);
 }
 
+.loading-page {
+  display: flex;
+  justify-content: center;
+}
+
 .loading-page.hidden {
   display: none;
 }
