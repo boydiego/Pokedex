@@ -178,11 +178,15 @@ body::before {
 
 @media all and (max-width: 500px) {
   .page-container {
-    margin-top: 180px;
+    margin-top: 120px;
   }
 
-  .page-container__title {
-    display: none;
+  .navbar {
+    flex-direction: column;
+  }
+
+  .navbar .form-inline {
+    justify-content: center;
   }
 
   .pkm-btn {
@@ -198,25 +202,13 @@ body::before {
   }
 }
 
-@media all and (max-width: 507px) and (min-width: 501px) {
+@media all and (max-width: 575px) and (min-width: 501px) {
   .page-container {
-    margin-top: 150px;
+    margin-top: 90px;
   }
 }
 
 @media all and (max-width: 575px) {
-  .navbar {
-    flex-direction: column;
-  }
-
-  .navbar .form-inline {
-    justify-content: center;
-  }
-
-  .page-container {
-    margin-top: 180px;
-  }
-
   .page-container__title {
     display: none;
   }
