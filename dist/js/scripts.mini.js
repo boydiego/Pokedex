@@ -7,86 +7,66 @@ let pokemonRepository = (function () {
       : alert('Entry not valid!');
   }
   function o(e) {
-    l(e).then(function () {
+    a(e).then(function () {
       !(function (e, t, n, o) {
         let a = $('.modal-body'),
           l = $('.modal-title'),
-          r = $('.modal-header');
-        l.empty(), a.empty(), r.empty();
-        let c = t / 10,
-          i = (function (e) {
+          i = $('.modal-header');
+        l.empty(), a.empty(), i.empty();
+        let s = t / 10,
+          r = (function (e) {
             return e.charAt(0).toUpperCase() + e.slice(1);
           })(e),
-          p = $(
+          c = $(
             '<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>'
           ),
-          s = $('<div class="pokemon-types"></div>'),
+          p = $('<div class="pokemon-types"></div>'),
           d = $('<img class="modal-image">');
         d.attr('src', o);
-        let m = $(`<h1>${i}</h1>`),
-          u = $(`<p>${c} m</p>`);
+        let u = $(`<h1>${r}</h1>`),
+          m = $(`<p>${s} m</p>`);
         n.forEach((e, t) => {
           if (t === n.length - 1) {
             let t = $(
               `<span class="first-type">${e.type.name.toUpperCase()}</span>`
             );
-            s.append(t), r.append(s);
+            p.append(t), i.append(p);
           } else {
             let t = $(
               `<span class="second-type">${e.type.name.toUpperCase()}</span>`
             );
-            s.append(t), r.append(s);
+            p.append(t), i.append(p);
           }
         }),
-          r.append(p),
-          l.append(m),
+          i.append(c),
+          l.append(u),
           a.append(l),
           a.append(d),
-          a.append(u);
+          a.append(m);
       })(e.name, e.height, e.types, e.imageUrl);
     });
   }
   function a(e) {
-    let t = document.querySelector('.list-group'),
-      n = document.createElement('li'),
-      a = document.createElement('button');
-    let l = (r = e.name).charAt(0).toUpperCase() + r.slice(1);
-    var r;
-    (a.innerText = l),
-      $(a).addClass('pkm-btn btn'),
-      $(a).attr('type', 'button'),
-      $(a).attr('data-toggle', 'modal'),
-      $(a).attr('data-target', '#pokemonModal'),
-      $(n).addClass('list-group-item col-xl-3 col-lg-4 col-sm-6'),
-      n.appendChild(a),
-      t.appendChild(n),
-      (function (e, t) {
-        e.addEventListener('click', function () {
-          o(t);
-        });
-      })(a, e);
-  }
-  function l(e) {
-    r();
+    l();
     let t = e.detailsUrl;
     return fetch(t)
       .then(function (e) {
         return e.json();
       })
       .then(function (t) {
-        c(),
+        i(),
           (e.imageUrl = t.sprites.front_default),
           (e.height = t.height),
           (e.types = t.types);
       })
       .catch(function (e) {
-        c(), console.error(e);
+        i(), console.error(e);
       });
   }
-  function r() {
+  function l() {
     document.querySelector('.loading-page').classList.remove('hidden');
   }
-  function c() {
+  function i() {
     document.querySelector('.loading-page').classList.add('hidden');
   }
   return {
@@ -94,55 +74,66 @@ let pokemonRepository = (function () {
     getAll: function () {
       return e;
     },
-    addListItem: a,
+    addListItem: function (e) {
+      let t = document.querySelector('.list-group'),
+        n = document.createElement('li'),
+        a = document.createElement('button'),
+        l = (i = e.name).charAt(0).toUpperCase() + i.slice(1);
+      var i;
+      (a.innerText = l),
+        $(a).addClass('pkm-btn btn'),
+        $(a).attr('type', 'button'),
+        $(a).attr('data-toggle', 'modal'),
+        $(a).attr('data-target', '#pokemonModal'),
+        $(n).addClass('list-group-item col-xl-3 col-lg-4 col-sm-6'),
+        n.appendChild(a),
+        t.appendChild(n),
+        (function (e, t) {
+          e.addEventListener('click', function () {
+            o(t);
+          });
+        })(a, e);
+    },
     loadList: function () {
       return (
-        r(),
+        l(),
         fetch(t)
           .then(function (e) {
             return e.json();
           })
           .then(function (e) {
-            c(),
+            i(),
               e.results.forEach(function (e) {
                 n({ name: e.name, detailsUrl: e.url });
               });
           })
           .catch(function (e) {
-            c(), console.error(e);
+            i(), console.error(e);
           })
       );
     },
-    loadDetails: l,
-    searchPokemon: function (t) {
-      function n(e) {
-        return e.charAt(0).toUpperCase() + e.slice(1);
-      }
-      if (($('.list-group').empty(), t.length >= 1)) {
-        t.toLowerCase();
-        let o = n(t);
-        console.log(o);
-        let l = e.filter(
-          (e) =>
-            n(e.name).charAt(0) === o ||
-            n(e.name).charAt(0) + n(e.name).charAt(1) === o ||
-            n(e.name).charAt(0) + n(e.name).charAt(1) + n(e.name).charAt(2) ===
-              o ||
-            n(e.name).charAt(0) +
-              n(e.name).charAt(1) +
-              n(e.name).charAt(2) +
-              n(e.name).charAt(3) ===
-              o ||
-            n(e.name) === o
-        );
-        console.log(l), l.forEach((e) => a(e));
-      }
+    loadDetails: a,
+    search: function (e) {
+      const t = e.target.value.toLowerCase();
+      t.length > 2
+        ? document.querySelectorAll('.list-group > li').forEach((e) => {
+            e.innerText.toLowerCase().includes(t)
+              ? ((e.style.display = 'block'),
+                console.log(e.innerText, 'Matches'))
+              : (e.style.display = 'none');
+          })
+        : 0 === t.length && window.location.reload();
     },
   };
 })();
+const searchBtn = document.getElementById('searchBtn');
 function myLoopFunction(e) {
   pokemonRepository.addListItem(e);
 }
-pokemonRepository.loadList().then(function () {
-  pokemonRepository.getAll().forEach(myLoopFunction);
-});
+searchBtn.addEventListener('input', pokemonRepository.search),
+  searchBtn.addEventListener('search', function (e) {
+    window.location.reload();
+  }),
+  pokemonRepository.loadList().then(function () {
+    pokemonRepository.getAll().forEach(myLoopFunction);
+  });

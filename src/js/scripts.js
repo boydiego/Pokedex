@@ -160,39 +160,20 @@ let pokemonRepository = (function () {
     loadingElement.classList.add('hidden');
   }
 
-  function searchPokemon(userInput) {
-    $('.list-group').empty();
-
-    function capitalizeFirstLetter(userInput) {
-      return userInput.charAt(0).toUpperCase() + userInput.slice(1);
-    }
-
-    if (userInput.length >= 1) {
-      userInput.toLowerCase();
-      let capitalizedUserInput = capitalizeFirstLetter(userInput);
-
-      console.log(capitalizedUserInput);
-
-      let resultArray = pokemonList.filter(
-        (pokemon) =>
-          capitalizeFirstLetter(pokemon.name).charAt(0) ===
-            capitalizedUserInput ||
-          capitalizeFirstLetter(pokemon.name).charAt(0) +
-            capitalizeFirstLetter(pokemon.name).charAt(1) ===
-            capitalizedUserInput ||
-          capitalizeFirstLetter(pokemon.name).charAt(0) +
-            capitalizeFirstLetter(pokemon.name).charAt(1) +
-            capitalizeFirstLetter(pokemon.name).charAt(2) ===
-            capitalizedUserInput ||
-          capitalizeFirstLetter(pokemon.name).charAt(0) +
-            capitalizeFirstLetter(pokemon.name).charAt(1) +
-            capitalizeFirstLetter(pokemon.name).charAt(2) +
-            capitalizeFirstLetter(pokemon.name).charAt(3) ===
-            capitalizedUserInput ||
-          capitalizeFirstLetter(pokemon.name) === capitalizedUserInput
-      );
-      console.log(resultArray);
-      resultArray.forEach((result) => addListItem(result));
+  function search(e) {
+    const key = e.target.value.toLowerCase();
+    if (key.length > 2) {
+      const pokemonList = document.querySelectorAll('.list-group > li');
+      pokemonList.forEach((l) => {
+        if (l.innerText.toLowerCase().includes(key)) {
+          l.style.display = 'block';
+          console.log(l.innerText, 'Matches');
+        } else {
+          l.style.display = 'none';
+        }
+      });
+    } else if (key.length === 0) {
+      window.location.reload();
     }
   }
 
@@ -202,9 +183,15 @@ let pokemonRepository = (function () {
     addListItem,
     loadList,
     loadDetails,
-    searchPokemon,
+    search,
   };
 })();
+
+const searchBtn = document.getElementById('searchBtn');
+searchBtn.addEventListener('input', pokemonRepository.search);
+searchBtn.addEventListener('search', function (e) {
+  window.location.reload();
+});
 
 function myLoopFunction(pokemon) {
   pokemonRepository.addListItem(pokemon);
